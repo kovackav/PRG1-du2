@@ -31,7 +31,7 @@ Pokud vzdálenost k libovolnému kontejneru překročí 10 km, program skončí 
 Z tohoto slovníku je počítána průměrná vdálenost, kde suma všech vzdáleností je dělena počtem adresních bodů. 
 Jednoduchou podmínkou skript zjišťuje maximální vzdálenost ke kontejneru od adresního bodu a následně ji vypisuje spolu s adresou. 
 
-Bonusovou funkci představuje `median`, kde je navíc proveden výpočet mediánu vdzáleností. Výpočet je proveden skrze list, který je setřízen a probíhá zjištění, zdali
+Bonusovou funkci představuje `median`, kde je navíc proveden výpočet mediánu vdzáleností. Výpočet je proveden skrze seznam, který je setřízen a probíhá zjištění, zdali
 je středový bod sudý či lichý. V případě lichého medián představuje středový prvek, v případě sudého aritmetický průměr dvou středových vzdáleností. 
 
 <h3> Výstup </h3>
