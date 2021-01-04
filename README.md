@@ -7,9 +7,8 @@ Link na zadání: https://github.com/xtompok/uvod-do-prg_20/tree/master/du02
 <h3> Vstup </h3>
 
 Vstupními daty jsou dva soubory GeoJSON, jeden představuje adresní body a druhý rozmístění kontejnerů. V obou případech se tedy jedná 
-o bodová data. Cesty ke vstupním souborům jsou zapsány přímo ve skriptu (předpokládá se umístění ve stejné složce, jako je skript). Nicméně
-v rámci bonusového úkolu byl využit modul [`argparse`](https://docs.python.org/3/library/argparse.html), kde se volitelně dají upravit vstupní
-soubory zadáním argumentu -a pro adresy či -k pro kontejnery. Ve chvíli, kdy argumenty zadány nejsou, skript počítá se zadáním. 
+o bodová data. Cesty ke vstupním souborům jsou zapsány přímo ve skriptu (předpokládá se umístění ve stejné složce, jako je skript). Dále byl využit modul [`argparse`](https://docs.python.org/3/library/argparse.html), kde se volitelně dají upravit vstupní
+soubory zadáním argumentu -a pro adresy či -k pro kontejnery. Ve chvíli, kdy argumenty zadány nejsou, skript počítá s cestami, vepsanými do skriptu.  
 
 <h3> Nahrání dat, validace </h3>
 
@@ -19,8 +18,7 @@ Druhá funkce `load_json` ověří, zdali se jedná o validní JSON. V případ�
 Následuje funkce `wgs2jtsk`, která pomocí modulu [`pyproj`](https://pypi.org/project/pyproj/) převádí vstupní data, která jsou v souřadnicovém systému WGS84 
 do souřadnicového systému S-JTSK. Děje se tak pro ulehčení následujících výpočtů, kde v S-JTSK se dá spočítat vzdálenost Pythagorovou větou. 
 
-Po nahrání dat a vytvoření JSONu následuje vytvoření slovníku adres a kontejnerů čtením požadovaných atributů ve slovnících `json_adresy` a `json_kontejnery`.
-Tato část se neopakuje, proto nebyla umístěna do funkce. Délka obou slovníků je vypsána jako počet vstupních adres a kontejnerů. 
+Po nahrání dat a vytvoření JSONu následuje vytvoření slovníku adres a kontejnerů čtením požadovaných atributů ve slovnících `json_adresy` a `json_kontejnery`. Délka obou slovníků je vypsána jako počet vstupních adres a kontejnerů. 
 
 <h3> Výpočet vzdáleností </h3>
 
@@ -31,7 +29,7 @@ Pokud vzdálenost k libovolnému kontejneru překročí 10 km, program skončí 
 Z tohoto slovníku je počítána průměrná vdálenost, kde suma všech vzdáleností je dělena počtem adresních bodů. 
 Skript zjišťuje maximální vzdálenost ke kontejneru od adresního bodu a následně ji vypisuje spolu s příslušnou adresou. 
 
-Bonusovou funkci představuje `median`, kde je navíc proveden výpočet mediánu vdzáleností. Výpočet je proveden skrze seznam, který je setřízen a probíhá zjištění, zdali
+Další představuje `median`, kde je proveden výpočet mediánu vdzáleností. Výpočet je proveden skrze seznam, který je setřízen a probíhá zjištění, zdali
 je středový bod sudý či lichý. V případě lichého medián představuje středový prvek, v případě sudého aritmetický průměr dvou středových vzdáleností. 
 
 <h3> Výstup </h3>
