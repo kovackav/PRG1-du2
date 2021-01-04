@@ -48,12 +48,15 @@ def distance (adresy, kontejnery):
     '''Vypocet vzdalenosti mezi adresnimi body a kontejnery. Vysledek uklada do slovniku.'''
     distances = {}
     for (adresy_street, adresy_coor) in adresy.items():
+        dismin = 10000
         for (kontejnery_street, kontejnery_coor) in kontejnery.items():
             dis = pythagor(adresy_coor, kontejnery_coor)
             if dis > 10000:
                 print(f"Nejblizsi kontejner pro adresu {(adresy_street)} je dale, nez 10 km. Program skonci.")
                 exit()
-        distances[adresy_street] = dis
+            if dis < dismin:
+                dismin = dis
+        distances[adresy_street] = dismin
     return distances
 
 def median(distances):
@@ -113,5 +116,4 @@ print()
 
 med = median(distances)
 print(f"Median vzdalenosti ke kontejneru je {med:.0f} m.")
-
 
