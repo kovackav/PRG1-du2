@@ -29,7 +29,7 @@ vzdálenost ke každému kontejneru, načež minimální vzdálenost (tedy k nej
 Pokud vzdálenost k libovolnému kontejneru překročí 10 km, program skončí chybou. 
 
 Z tohoto slovníku je počítána průměrná vdálenost, kde suma všech vzdáleností je dělena počtem adresních bodů. 
-Jednoduchou podmínkou skript zjišťuje maximální vzdálenost ke kontejneru od adresního bodu a následně ji vypisuje spolu s adresou. 
+Skript zjišťuje maximální vzdálenost ke kontejneru od adresního bodu a následně ji vypisuje spolu s příslušnou adresou. 
 
 Bonusovou funkci představuje `median`, kde je navíc proveden výpočet mediánu vdzáleností. Výpočet je proveden skrze seznam, který je setřízen a probíhá zjištění, zdali
 je středový bod sudý či lichý. V případě lichého medián představuje středový prvek, v případě sudého aritmetický průměr dvou středových vzdáleností. 
