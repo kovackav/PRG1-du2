@@ -7,7 +7,10 @@ Link na zadání: https://github.com/xtompok/uvod-do-prg_20/tree/master/du02
 <h3> Vstup </h3>
 
 Vstupními daty jsou dva soubory GeoJSON, jeden představuje adresní body a druhý rozmístění kontejnerů. V obou případech se tedy jedná 
-o bodová data. Cesty ke vstupním souborům jsou zapsány přímo ve skriptu (předpokládá se umístění ve stejné složce, jako je skript). Dále byl využit modul [`argparse`](https://docs.python.org/3/library/argparse.html), kde se volitelně dají upravit vstupní
+o bodová data. 
+U adresních bodů je očekáván souřadnicový systém WGS-84 (EPSG: 4326) a požadován je atribut `addr:street` a `addr:housenumber` s klíčem `properties` a `coordinates` s klíčem `geometry`. 
+Kontejnery mají mít souřadnicový systém S-JtSK (EPSG: 5514) a klíč `properties` má obsahovat `STATIONNAME` a `PRISTUP`. Klíč `geometry` opět `coordinates`.
+Cesty ke vstupním souborům jsou zapsány přímo ve skriptu (předpokládá se umístění ve stejné složce, jako je skript). Dále byl využit modul [`argparse`](https://docs.python.org/3/library/argparse.html), kde se volitelně dají upravit vstupní
 soubory zadáním argumentu -a pro adresy či -k pro kontejnery. Ve chvíli, kdy argumenty zadány nejsou, skript počítá s cestami, vepsanými do skriptu.  
 
 <h3> Nahrání dat, validace </h3>
