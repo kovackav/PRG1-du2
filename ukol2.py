@@ -67,26 +67,33 @@ def median(distances):
         med = v_list[mid]
     return med
 
-json_kontejnery = load_file(path_kontejnery)
+def adresy_dict(json_adresy):
+    '''Vytvoreni slovniku adres s pozadovanymi atributy.'''
+    adresy = {}
+    for feature in json_adresy:
+        street = feature["properties"]["addr:street"] + " " + feature["properties"]["addr:housenumber"]
+        wgs_lat = feature["geometry"]["coordinates"][1]
+        wgs_lon = feature["geometry"]["coordinates"][0]
+        adresy[street] = wgs2jtsk.transform(wgs_lat, wgs_lon) #volani promenne na prevod wgs do s-jtsk
+    return adresy
+
+def kontejnery_dict(json_kontejnery):
+    '''Vytvoreni slovniku kontejneru s pozadovanymi atributy.'''
+    kontejnery = {}
+    for feature in json_kontejnery:
+        street = feature["properties"]["STATIONNAME"]
+        latlon = feature["geometry"]["coordinates"]
+        access = feature["properties"]["PRISTUP"]
+        # uvazujeme pouze volne pristupne kontejnery
+        if access=="volně":
+            kontejnery[street] = latlon
+    return kontejnery
+
 json_adresy = load_file(path_adresy)
+json_kontejnery = load_file(path_kontejnery)
 
-#vytvoreni slovniku adres s pozadovanymi atributy
-adresy = {}
-for feature in json_adresy:
-    street = feature["properties"]["addr:street"] + " " + feature["properties"]["addr:housenumber"]
-    wgs_lat = feature["geometry"]["coordinates"][1]
-    wgs_lon = feature["geometry"]["coordinates"][0]
-    adresy[street] = wgs2jtsk.transform(wgs_lat, wgs_lon) #volani funkce na prevod wgs do s-jtsk
-
-#vytvoreni slovniku kontejneru s pozadovanymi atributy
-kontejnery = {}
-for feature in json_kontejnery:
-    street = feature["properties"]["STATIONNAME"]
-    latlon = feature["geometry"]["coordinates"]
-    access = feature["properties"]["PRISTUP"]
-    # uvazujeme pouze volne pristupne kontejnery
-    if access=="volně":
-        kontejnery[street] = latlon
+adresy = adresy_dict(json_adresy)
+kontejnery = kontejnery_dict(json_kontejnery)
 
 print(f"Nacteno {len(adresy)} adresnich bodu.")
 print(f"Nacteno {len(kontejnery)} kontejneru na trideny odpad.")
