@@ -43,11 +43,11 @@ je středový bod sudý či lichý. V případě lichého medián představuje s
 Výstup z programu s přiloženými daty je následující: 
 
 ```
-Nacteno 233 adresnich bodu.
+Nacteno 26 adresnich bodu.
 Nacteno 4 kontejneru na trideny odpad.
 
-Prumerna vzdalenost ke kontejneru je 85 m.
-Nejdale ke kontejneru je z adresy Haštalské náměstí 784/7 a to 180 m.
+Prumerna vzdalenost ke kontejneru je 52 m.
+Nejdale ke kontejneru je z adresy Na Františku 847/8 a to 185 m.
 
-Median vzdalenosti ke kontejneru je 82 m.
+Median vzdalenosti ke kontejneru je 44 m.
 ```
