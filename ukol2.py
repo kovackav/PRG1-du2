@@ -58,12 +58,13 @@ def median(distances):
     for (street, dis) in distances.items(): #vytvoreni listu vzdalenosti
         v_list.append(dis)
     v_list.sort() #serazeni listu podle vzdalenosti
-    mid = (len(v_list)/2) #zjisteni prostredniho prvku
-    if not (mid % 2) == 0:  #pokud je median sude cislo 
+    mid = ((len(v_list)-1)/2) #zjisteni prostredniho prvku
+    if (len(v_list) % 2) == 0:  #pokud je median sude cislo 
         mid1 = int(mid - 0.5)
         mid2 = int(mid + 0.5)
         med = (v_list[mid1]+v_list[mid2])/2
     else:  #pokud je median liche cislo
+        mid = int(mid + 0.5)
         med = v_list[mid]
     return med
 
