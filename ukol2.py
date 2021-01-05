@@ -19,17 +19,16 @@ if args.kontejnery is not None:
 def load_file(path):
     '''Nacteni vstupniho souboru. Pokud soubor chybi (spatne zadana cesta), vyskoci chyba.'''
     try:
-        return open(path, encoding="UTF-8")
+        with open(path, encoding="UTF-8") as json_file:
+            return json.load(json_file)["features"]
+    except ValueError: 
+        print(f"Soubor {path} neni validni GeoJSON.")
+        exit()
     except FileNotFoundError:
         print(f"Vstupni data {path} se nepodarilo nalezt, zkontrolujte cestu.")
         exit()
-
-def load_json(file, path):
-    '''Cteni JSONu a kontrola, zdali je soubor validni.'''
-    try:
-        return json.load(file)["features"]
-    except ValueError: 
-        print(f"Soubor {path} neni validni GeoJSON.")
+    except PermissionError:
+        print(f"Vstupni data {path} existuji, ale program k nim nema pristup.")
         exit()
 
 def wgs2jtsk (latitude, longitude):
@@ -74,11 +73,8 @@ def median(distances):
         med = v_list[mid]
     return med
 
-loaded_file_kontejnery = load_file(path_kontejnery)
-loaded_file_adresy = load_file(path_adresy)
-
-json_kontejnery = load_json(loaded_file_kontejnery, path_kontejnery)
-json_adresy = load_json(loaded_file_adresy, path_adresy)
+json_kontejnery = load_file(path_kontejnery)
+json_adresy = load_file(path_adresy)
 
 #vytvoreni slovniku adres s pozadovanymi atributy
 adresy = {}
