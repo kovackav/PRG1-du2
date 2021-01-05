@@ -19,10 +19,9 @@ soubory zadáním argumentu -a pro adresy či -k pro kontejnery. Ve chvíli, kdy
 <h3> Nahrání dat, validace </h3>
 
 V úvodu jsou nahrána vstupní data pomocí funkce `load_file`. Tato funkce ověřuje, zdali je soubor nalezen. Pokud ne, skript skončí chybou.
-Druhá funkce `load_json` ověří, zdali se jedná o validní JSON. V případě, že struktura není čitelná, program skončí chybou. 
+Funkce rovněž ověří, zdali se jedná o validní JSON. V případě, že struktura není čitelná, program skončí chybou. 
 
-Následuje funkce `wgs2jtsk`, která pomocí modulu [`pyproj`](https://pypi.org/project/pyproj/) převádí vstupní data, která jsou v souřadnicovém systému WGS84 
-do souřadnicového systému S-JTSK. Děje se tak pro ulehčení následujících výpočtů, kde v S-JTSK se dá spočítat vzdálenost Pythagorovou větou. 
+Ve skriptu na řádku 34 je příkaz, vytvářející proměnnou `wgs2jtsk`, která pomocí modulu [`pyproj`](https://pypi.org/project/pyproj/) převádí vstupní data, která jsou v souřadnicovém systému WGS84 do souřadnicového systému S-JTSK. Děje se tak pro ulehčení následujících výpočtů, kde v S-JTSK se dá spočítat vzdálenost Pythagorovou větou. 
 
 Po nahrání dat a vytvoření JSONu následuje vytvoření slovníku adres a kontejnerů čtením požadovaných atributů ve slovnících `json_adresy` a `json_kontejnery`. Délka obou slovníků je vypsána jako počet vstupních adres a kontejnerů. 
 
