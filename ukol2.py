@@ -31,13 +31,7 @@ def load_file(path):
         print(f"Vstupni data {path} existuji, ale program k nim nema pristup.")
         exit()
 
-def wgs2jtsk (latitude, longitude):
-    '''Funkce pro prevod z WGS do S-JTSK.'''
-    crs_wgs = CRS.from_epsg(4326) # WGS-84
-    crs_jtsk = CRS.from_epsg(5514) # S-JTSK
-    wgs2jtsk = Transformer.from_crs(crs_wgs,crs_jtsk)
-    jtsk = wgs2jtsk.transform(latitude,longitude)
-    return(jtsk)
+wgs2jtsk = Transformer.from_crs(CRS.from_epsg(4326), CRS.from_epsg(5514))
 
 def pythagor(x, y):
     '''Pythagorova veta.'''
@@ -82,7 +76,7 @@ for feature in json_adresy:
     street = feature["properties"]["addr:street"] + " " + feature["properties"]["addr:housenumber"]
     wgs_lat = feature["geometry"]["coordinates"][1]
     wgs_lon = feature["geometry"]["coordinates"][0]
-    adresy[street] = wgs2jtsk(wgs_lat, wgs_lon) #volani funkce na prevod wgs do s-jtsk
+    adresy[street] = wgs2jtsk.transform(wgs_lat, wgs_lon) #volani funkce na prevod wgs do s-jtsk
 
 #vytvoreni slovniku kontejneru s pozadovanymi atributy
 kontejnery = {}
