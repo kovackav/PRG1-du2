@@ -6,7 +6,7 @@ import argparse
 path_kontejnery = "kontejnery.geojson"
 path_adresy = "adresy.geojson"
 
-'''Volitelny ukol, soubory jako parametry programu. -h zobrazi napovedu.'''
+'''Soubory jako parametry programu. -h zobrazi napovedu.'''
 parser = argparse.ArgumentParser(description = "Vypocet vzdalenosti ke kontejnerum na trideny odpad")
 parser.add_argument('-a', '--adresni_body', type = str, metavar = '', required = False, help = 'GeoJSON s adresnimi body.')
 parser.add_argument('-k', '--kontejnery', type = str, metavar = '', required = False, help = 'GeoJSON s kontejnery.')
